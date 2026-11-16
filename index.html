@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySeek — 企业级 AI 对话工作台</title>
+    <meta name="description" content="MySeek 是一个面向企事业内部的开源 AI 对话工作台，支持多模型切换、流式输出、知识库问答（RAG）与统一鉴权。">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <nav class="nav">
+        <a class="brand" href="#top"><span class="brand-icon">M</span><span>MySeek</span></a>
+        <div class="nav-links">
+            <a href="#features">功能特性</a>
+            <a href="#preview">界面预览</a>
+            <a href="#stack">技术栈</a>
+            <a href="#quickstart">快速开始</a>
+        </div>
+        <a class="nav-cta" href="https://gitee.com/wu6789/my-seek" target="_blank" rel="noopener">Gitee 源码</a>
+    </nav>
+
+    <header class="hero" id="top">
+        <div class="hero-badge"><span class="badge-dot"></span>开源 · 可私有化部署</div>
+        <h1>让 AI 真正<span class="gradient">服务于你的团队</span></h1>
+        <p class="hero-sub">一个面向企事业内部的 AI 对话工作台。多模型自由切换、流式输出、知识库问答（RAG），从对话到私有知识，一套系统全部搞定。</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="https://gitee.com/wu6789/my-seek" target="_blank" rel="noopener">查看源码 <span class="arrow">-&gt;</span></a>
+            <a class="btn btn-secondary" href="#preview">查看界面</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat"><strong>4</strong><span>后端核心技术</span></div>
+            <div class="stat"><strong>3</strong><span>模型提供方</span></div>
+            <div class="stat"><strong>100%</strong><span>数据自主可控</span></div>
+        </div>
+    </header>
+
+    <section class="preview-section" id="preview">
+        <div class="section-label">SCREENSHOT</div>
+        <h2 class="section-title">直观、流畅的对话体验</h2>
+        <p class="section-desc">简洁的侧边栏会话管理，清晰的多轮对话，支持 Markdown、代码高亮与模型实时切换。</p>
+        <div class="screenshot-frame">
+            <div class="frame-bar">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="frame-url">localhost:5173</span>
+            </div>
+            <img src="./assets/image.png" alt="MySeek 聊天界面截图" loading="lazy">
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="section-label">FEATURES</div>
+        <h2 class="section-title">为真实业务场景而设计</h2>
+        <p class="section-desc">不只是聊天框，而是一套可直接落地的内部 AI 基础设施。</p>
+        <div class="features-grid">
+            <article class="feature-card"><div class="feature-icon">✦</div><h3>多模型自由切换</h3><p>本地 Ollama、豆包、千问统一接入，按场景随时切换，不被单一厂商绑定。</p></article>
+            <article class="feature-card"><div class="feature-icon">↯</div><h3>流式输出</h3><p>逐字返回，首屏响应更快。Markdown、代码高亮、数学公式原生渲染。</p></article>
+            <article class="feature-card"><div class="feature-icon">▤</div><h3>知识库问答（RAG）</h3><p>上传文档自动解析、分块与向量化，基于私有资料进行检索增强回答。</p></article>
+            <article class="feature-card"><div class="feature-icon">◇</div><h3>统一鉴权与隔离</h3><p>JWT 登录，聊天记忆与会话列表按用户隔离，接口权限统一管控。</p></article>
+            <article class="feature-card"><div class="feature-icon">⬡</div><h3>现代化技术栈</h3><p>Spring Boot 4 + Spring AI 2 + Java 25，前端 React 19 + Vite 7 + TypeScript。</p></article>
+            <article class="feature-card"><div class="feature-icon">⬟</div><h3>私有化部署</h3><p>数据留在自己的服务器，敏感资料不出内网，满足企业内部合规要求。</p></article>
+        </div>
+    </section>
+
+    <section class="stack-section" id="stack">
+        <div class="section-label">TECH STACK</div>
+        <h2 class="section-title">技术栈</h2>
+        <div class="stack-grid">
+            <div class="stack-item"><span>Backend</span><strong>Spring Boot 4</strong></div>
+            <div class="stack-item"><span>AI</span><strong>Spring AI 2</strong></div>
+            <div class="stack-item"><span>Language</span><strong>Java 25</strong></div>
+            <div class="stack-item"><span>Frontend</span><strong>React 19</strong></div>
+            <div class="stack-item"><span>Build</span><strong>Vite 7</strong></div>
+            <div class="stack-item"><span>Storage</span><strong>MariaDB + Redis</strong></div>
+        </div>
+    </section>
+
+    <section class="start-section" id="quickstart">
+        <div class="section-label">QUICK START</div>
+        <h2 class="section-title">三步跑起来</h2>
+        <div class="steps">
+            <div class="step"><span class="step-num">1</span><div><h3>克隆代码</h3><code>git clone https://gitee.com/wu6789/my-seek.git</code></div></div>
+            <div class="step"><span class="step-num">2</span><div><h3>启动后端</h3><code>cd my-seek &amp;&amp; ./gradlew bootRun</code></div></div>
+            <div class="step"><span class="step-num">3</span><div><h3>启动前端</h3><code>cd my-seek-web &amp;&amp; pnpm install &amp;&amp; pnpm dev</code></div></div>
+        </div>
+        <p class="start-note">需要本地可用的 MariaDB、Redis 与 Ollama。详细配置见后端 README。</p>
+    </section>
+
+    <section class="cta-section">
+        <h2>准备好搭建自己的 AI 工作台了吗？</h2>
+        <p>开源、可定制、可私有化部署。</p>
+        <a class="btn btn-primary" href="https://gitee.com/wu6789/my-seek" target="_blank" rel="noopener">前往 Gitee 获取源码 <span class="arrow">-&gt;</span></a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-brand">MySeek <span>— 企业级 AI 对话工作台</span></div>
+        <div class="footer-links">
+            <a href="https://gitee.com/wu6789/my-seek" target="_blank" rel="noopener">后端源码</a>
+            <a href="https://gitee.com/wu6789/my-seek-page" target="_blank" rel="noopener">宣传页仓库</a>
+        </div>
+    </footer>
+    <script src="./script.js"></script>
+</body>
+</html>
