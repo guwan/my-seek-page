@@ -42,6 +42,20 @@ pnpm preview    # 本地预览构建产物
 
 SPA 路由回退通过 `public/_redirects`（`/* /index.html 200`）实现，确保直接访问 `/docs` 等路径也能正确加载。
 
+### 关于 pnpm 的兼容性（重要）
+
+Cloudflare Pages 的构建镜像使用 **pnpm 9.x**。它只要发现仓库根目录存在 `pnpm-workspace.yaml`，
+就会按 monorepo 处理，并要求该文件包含 `packages` 字段，否则直接报
+`packages field missing or empty`。本项目虽是单包，但为放行 esbuild 构建脚本保留了这个文件，
+因此 `pnpm-workspace.yaml` 中声明了 `packages: ['.']`（根包即唯一工作区包）。
+
+- `pnpm-lock.yaml` 为 lockfile v9.0，与 pnpm 9 兼容，已提交到仓库
+- 仓库中**没有** `package-lock.json`，避免双锁文件冲突
+- 本地使用 pnpm 11 开发无影响；已用 pnpm 9.15.9 实际验证 install 与 build 均通过
+
+> 不要为了让 monorepo 校验通过而往 `package.json` 加 `packages` 字段——pnpm 不读取该字段，
+> 报错来自 `pnpm-workspace.yaml`。
+
 > 如果使用 Wrangler CLI 部署，仓库中的 `wrangler.toml` 已配置好 `pages_build_output_dir`。
 
 ## 技术栈
