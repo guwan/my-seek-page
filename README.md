@@ -2,8 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Cloudflare Pages](https://img.shields.io/badge/Deploy-Cloudflare%20Pages-orange?logo=cloudflare)](https://pages.cloudflare.com/)
+[![GitHub stars](https://img.shields.io/github/stars/guwan/my-seek-page?style=social)](https://github.com/guwan/my-seek-page)
 
-[MySeek](https://gitee.com/wu6789/my-seek) 开源项目的官方宣传站点。基于 **Vite + React 19 + Tailwind CSS 4 + React Router 7** 构建的 SPA，部署在 Cloudflare Pages。
+[MySeek](https://github.com/guwan/my-seek) 开源项目的官方宣传站点。基于 **Vite + React 19 + Tailwind CSS 4 + React Router 7** 构建的 SPA，部署在 Cloudflare Pages。
 
 ## 页面
 
@@ -13,6 +14,13 @@
 | `/features` | 功能特性详情与整体架构 |
 | `/docs` | 快速开始、环境要求、环境变量 |
 | `/about` | 开源协议、贡献指南、项目组成 |
+
+## 相关项目
+
+| 项目 | 说明 |
+| --- | --- |
+| [guwan/my-seek](https://github.com/guwan/my-seek) | 后端服务：鉴权、对话、知识库、联网搜索、供应商管理 |
+| [guwan/my-seek-web](https://github.com/guwan/my-seek-web) | Web 对话工作台：多模型聊天、会话管理、AI 写作 |
 
 ## 本地开发
 
