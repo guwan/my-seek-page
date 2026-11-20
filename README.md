@@ -73,7 +73,7 @@ Cloudflare Pages 的构建镜像使用 **pnpm 9.x**。它只要发现仓库根�
 1. 进入仓库 Settings → Pages，将 **Build and deployment → Source** 设为 `GitHub Actions`。
 2. 推送到 `main` 或 `master`，或在 Actions 页面手动运行 `Deploy to GitHub Pages`。
 3. workflow 会自动：
-   - 使用 pnpm 9 + Node.js 22 构建；
+   - 使用 pnpm 9 + Node.js 24 构建；
    - 根据仓库名设置 Vite `base`；
    - 复制 `dist/index.html` 为 `dist/404.html` 以支持 SPA 路由回退；
    - 创建 `.nojekyll`，避免 GitHub Pages 的 Jekyll 处理；
