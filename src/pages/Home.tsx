@@ -60,7 +60,11 @@ export default function Home() {
             <span className="w-3 h-3 rounded-full bg-green-500" />
             <span className="ml-4 text-xs text-slate-500 font-mono">localhost:5173</span>
           </div>
-          <img src="/screenshot.png" alt="MySeek 聊天界面" className="w-full block" />
+          <img
+            src={`${import.meta.env.BASE_URL}screenshot.png`}
+            alt="MySeek 聊天界面"
+            className="w-full block"
+          />
         </div>
         <p className="text-center text-sm text-slate-500 mt-5">聊天页：多轮对话、Markdown 渲染、模型切换与会话列表</p>
       </section>
