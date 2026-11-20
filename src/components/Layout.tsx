@@ -1,24 +1,71 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, Github, ExternalLink, Languages } from 'lucide-react'
+import { Menu, X, Github, ExternalLink, Languages, ChevronDown, Check } from 'lucide-react'
 import { useI18n } from '../i18n'
 import { locales, languageNames } from '../i18n/translations'
-import type { Locale } from '../i18n/translations'
 
 function LanguageSelect() {
   const { locale, setLocale, t } = useI18n()
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    const onPointerDown = (e: PointerEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('pointerdown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open])
+
   return (
-    <label className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors" title={t('nav.language')}>
-      <Languages size={16} aria-hidden="true" />
-      <select
-        value={locale}
-        onChange={e => setLocale(e.target.value as Locale)}
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(v => !v)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
         aria-label={t('nav.language')}
-        className="bg-transparent text-sm text-slate-300 outline-none cursor-pointer [&>option]:bg-[#111]"
+        title={t('nav.language')}
+        className={`inline-flex h-9 items-center gap-1.5 rounded-lg border px-3 text-sm text-slate-300 transition-colors hover:border-indigo-500/60 hover:bg-indigo-500/10 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 ${open ? 'border-indigo-500/60 bg-indigo-500/10 text-white' : 'border-white/10 bg-white/[0.03]'}`}
       >
-        {locales.map(l => <option key={l} value={l}>{languageNames[l]}</option>)}
-      </select>
-    </label>
+        <Languages size={16} className="text-slate-400" aria-hidden="true" />
+        <span>{languageNames[locale]}</span>
+        <ChevronDown size={14} className={`text-slate-500 transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
+      </button>
+
+      {open && (
+        <div
+          role="listbox"
+          aria-label={t('nav.language')}
+          className="absolute start-0 top-full z-50 mt-2 w-44 max-w-[calc(100vw-2.5rem)] rounded-xl border border-white/10 bg-[#14141f]/95 p-1.5 shadow-2xl shadow-black/60 backdrop-blur-xl md:start-auto md:end-0"
+        >
+          {locales.map(l => (
+            <button
+              key={l}
+              type="button"
+              role="option"
+              aria-selected={l === locale}
+              onClick={() => {
+                setLocale(l)
+                setOpen(false)
+              }}
+              className={`flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm transition-colors ${l === locale ? 'bg-indigo-500/15 text-indigo-300' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
+            >
+              <span>{languageNames[l]}</span>
+              {l === locale && <Check size={15} aria-hidden="true" />}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
 
