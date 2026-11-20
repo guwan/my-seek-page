@@ -3,8 +3,8 @@ import { Scale, HeartHandshake, Github, ExternalLink } from 'lucide-react'
 import { useI18n } from '../i18n'
 
 const projects = [
-  { n: 'my-seek', d: 'about.projects0.d', u: 'https://gitee.com/wu6789/my-seek' },
-  { n: 'my-seek-web', d: 'about.projects1.d', u: 'https://gitee.com/wu6789/my-seek' },
+  { n: 'my-seek', d: 'about.projects0.d', u: 'https://github.com/guwan/my-seek' },
+  { n: 'my-seek-web', d: 'about.projects1.d', u: 'https://github.com/guwan/my-seek-web' },
   { n: 'my-seek-page', d: 'about.projects2.d', u: 'https://github.com/guwan/my-seek-page' },
 ] as const
 
@@ -33,7 +33,7 @@ export default function About() {
           {t('about.contributeDesc')}
         </p>
         <div className="flex flex-wrap gap-4">
-          <a href="https://gitee.com/wu6789/my-seek" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-lg border border-white/10 text-sm flex items-center gap-2 hover:border-indigo-500/50 transition-colors">
+          <a href="https://github.com/guwan/my-seek" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-lg border border-white/10 text-sm flex items-center gap-2 hover:border-indigo-500/50 transition-colors">
             {t('about.backendSource')} <ExternalLink size={14} />
           </a>
           <a href="https://github.com/guwan/my-seek-page" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-lg border border-white/10 text-sm flex items-center gap-2 hover:border-indigo-500/50 transition-colors">

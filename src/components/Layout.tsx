@@ -69,15 +69,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="hidden md:flex items-center gap-3">
             <LanguageSelect />
             <a
-              href="https://gitee.com/wu6789/my-seek"
+              href="https://github.com/guwan/my-seek-web"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 text-sm rounded-lg border border-white/10 hover:border-indigo-500/60 hover:bg-indigo-500/10 transition-colors"
             >
-              Gitee
+              Web
             </a>
             <a
-              href="https://github.com/guwan/my-seek-page"
+              href="https://github.com/guwan/my-seek"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 text-sm rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium hover:opacity-90 transition-opacity flex items-center gap-2"
@@ -111,10 +111,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             ))}
             <div className="flex flex-wrap gap-3 pt-3 border-t border-white/10">
               <LanguageSelect />
-              <a href="https://gitee.com/wu6789/my-seek" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 flex items-center gap-1">
-                Gitee <ExternalLink size={13} />
+              <a href="https://github.com/guwan/my-seek-web" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 flex items-center gap-1">
+                Web <ExternalLink size={13} />
               </a>
-              <a href="https://github.com/guwan/my-seek-page" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 flex items-center gap-1">
+              <a href="https://github.com/guwan/my-seek" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 flex items-center gap-1">
                 GitHub <ExternalLink size={13} />
               </a>
             </div>
@@ -134,7 +134,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link to="/features" className="hover:text-white">{t('footer.features')}</Link>
             <Link to="/docs" className="hover:text-white">{t('footer.docs')}</Link>
             <Link to="/about" className="hover:text-white">{t('footer.license')}</Link>
-            <a href="https://gitee.com/wu6789/my-seek" target="_blank" rel="noopener noreferrer" className="hover:text-white">{t('footer.backend')}</a>
+            <a href="https://github.com/guwan/my-seek" target="_blank" rel="noopener noreferrer" className="hover:text-white">{t('footer.backend')}</a>
           </div>
           <div className="text-sm text-slate-600">{t('footer.copyright')}</div>
         </div>

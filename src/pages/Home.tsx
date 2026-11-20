@@ -34,7 +34,7 @@ export default function Home() {
         </p>
         <div className="flex flex-wrap justify-center gap-4 mt-9">
           <a
-            href="https://gitee.com/wu6789/my-seek"
+            href="https://github.com/guwan/my-seek"
             target="_blank"
             rel="noopener noreferrer"
             className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold inline-flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-indigo-500/25"
