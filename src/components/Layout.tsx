@@ -1,18 +1,38 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, Github, ExternalLink } from 'lucide-react'
-import { useEffect } from 'react'
+import { Menu, X, Github, ExternalLink, Languages } from 'lucide-react'
+import { useI18n } from '../i18n'
+import { locales, languageNames } from '../i18n/translations'
+import type { Locale } from '../i18n/translations'
 
-const navItems = [
-  { to: '/', label: '首页' },
-  { to: '/features', label: '功能特性' },
-  { to: '/docs', label: '文档' },
-  { to: '/about', label: '关于' },
-]
+function LanguageSelect() {
+  const { locale, setLocale, t } = useI18n()
+  return (
+    <label className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors" title={t('nav.language')}>
+      <Languages size={16} aria-hidden="true" />
+      <select
+        value={locale}
+        onChange={e => setLocale(e.target.value as Locale)}
+        aria-label={t('nav.language')}
+        className="bg-transparent text-sm text-slate-300 outline-none cursor-pointer [&>option]:bg-[#111]"
+      >
+        {locales.map(l => <option key={l} value={l}>{languageNames[l]}</option>)}
+      </select>
+    </label>
+  )
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
+  const { t } = useI18n()
+
+  const navItems = [
+    { to: '/', label: t('nav.home') },
+    { to: '/features', label: t('nav.features') },
+    { to: '/docs', label: t('nav.docs') },
+    { to: '/about', label: t('nav.about') },
+  ]
 
   useEffect(() => {
     setMenuOpen(false)
@@ -47,6 +67,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
+            <LanguageSelect />
             <a
               href="https://gitee.com/wu6789/my-seek"
               target="_blank"
@@ -68,7 +89,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <button
             className="md:hidden p-2 text-slate-300"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="切换菜单"
+            aria-label={t('nav.menu')}
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -88,7 +109,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 {item.label}
               </NavLink>
             ))}
-            <div className="flex gap-3 pt-3 border-t border-white/10">
+            <div className="flex flex-wrap gap-3 pt-3 border-t border-white/10">
+              <LanguageSelect />
               <a href="https://gitee.com/wu6789/my-seek" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 flex items-center gap-1">
                 Gitee <ExternalLink size={13} />
               </a>
@@ -106,15 +128,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-6xl mx-auto px-5 py-10 flex flex-col md:flex-row justify-between items-center gap-5">
           <div>
             <div className="font-bold text-lg">MySeek</div>
-            <div className="text-sm text-slate-500 mt-1">企业级 AI 对话工作台 · 开源项目</div>
+            <div className="text-sm text-slate-500 mt-1">{t('footer.tagline')}</div>
           </div>
           <div className="flex flex-wrap gap-6 text-sm text-slate-400">
-            <Link to="/features" className="hover:text-white">功能特性</Link>
-            <Link to="/docs" className="hover:text-white">文档</Link>
-            <Link to="/about" className="hover:text-white">开源协议</Link>
-            <a href="https://gitee.com/wu6789/my-seek" target="_blank" rel="noopener noreferrer" className="hover:text-white">后端源码</a>
+            <Link to="/features" className="hover:text-white">{t('footer.features')}</Link>
+            <Link to="/docs" className="hover:text-white">{t('footer.docs')}</Link>
+            <Link to="/about" className="hover:text-white">{t('footer.license')}</Link>
+            <a href="https://gitee.com/wu6789/my-seek" target="_blank" rel="noopener noreferrer" className="hover:text-white">{t('footer.backend')}</a>
           </div>
-          <div className="text-sm text-slate-600">© 2026 MySeek · MIT License</div>
+          <div className="text-sm text-slate-600">{t('footer.copyright')}</div>
         </div>
       </footer>
     </div>

@@ -1,11 +1,30 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="MySeek — 面向企事业内部的开源 AI 对话工作台，支持多模型切换、流式输出、知识库问答（RAG）与私有化部署。" />
+    <meta name="description" content="MySeek — an open-source AI chat workspace for enterprises, with multi-model switching, streaming output, RAG, and self-hosted deployment." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>MySeek — 企业级 AI 对话工作台</title>
+    <title>MySeek — Enterprise AI Chat Workspace</title>
+    <script>
+      (function () {
+        var supported = ['zh', 'en', 'ja', 'ko', 'fr', 'pt', 'ar']
+        var saved = null
+        try { saved = localStorage.getItem('myseek-locale') } catch (e) {}
+        var locale = 'en'
+        if (saved && supported.indexOf(saved) !== -1) {
+          locale = saved
+        } else {
+          var tags = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]) || []
+          for (var i = 0; i < tags.length; i++) {
+            var base = String(tags[i]).toLowerCase().split('-')[0]
+            if (supported.indexOf(base) !== -1) { locale = base; break }
+          }
+        }
+        document.documentElement.lang = locale
+        document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr'
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

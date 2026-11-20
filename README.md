@@ -1,93 +1,98 @@
-# MySeek 宣传页
+# MySeek Landing Page
+
+[English](README.md) | [简体中文](README.zh-CN.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Cloudflare Pages](https://img.shields.io/badge/Deploy-Cloudflare%20Pages-orange?logo=cloudflare)](https://pages.cloudflare.com/)
+[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-blue?logo=github)](https://guwan.github.io/my-seek-page/)
 [![GitHub stars](https://img.shields.io/github/stars/guwan/my-seek-page?style=social)](https://github.com/guwan/my-seek-page)
 
-[MySeek](https://github.com/guwan/my-seek) 开源项目的官方宣传站点。基于 **Vite + React 19 + Tailwind CSS 4 + React Router 7** 构建的 SPA，部署在 Cloudflare Pages。
+The official landing page for the open-source [MySeek](https://github.com/guwan/my-seek) project. It is a SPA built with **Vite + React 19 + Tailwind CSS 4 + React Router 7**, and can be deployed to Cloudflare Pages or GitHub Pages.
 
-## 页面
+## Pages
 
-| 路由 | 说明 |
+| Route | Description |
 | --- | --- |
-| `/` | 首页：项目介绍、界面预览、核心亮点 |
-| `/features` | 功能特性详情与整体架构 |
-| `/docs` | 快速开始、环境要求、环境变量 |
-| `/about` | 开源协议、贡献指南、项目组成 |
+| `/` | Home: project introduction, UI preview, and key highlights |
+| `/features` | Feature details and overall architecture |
+| `/docs` | Quick start, requirements, and environment variables |
+| `/about` | License, contribution guide, and project structure |
 
-## 相关项目
+## Related Projects
 
-| 项目 | 说明 |
+| Project | Description |
 | --- | --- |
-| [guwan/my-seek](https://github.com/guwan/my-seek) | 后端服务：鉴权、对话、知识库、联网搜索、供应商管理 |
-| [guwan/my-seek-web](https://github.com/guwan/my-seek-web) | Web 对话工作台：多模型聊天、会话管理、AI 写作 |
+| [guwan/my-seek](https://github.com/guwan/my-seek) | Backend service: authentication, chat, knowledge base, web search, and provider management |
+| [guwan/my-seek-web](https://github.com/guwan/my-seek-web) | Web workspace: multi-model chat, conversation management, and AI writing |
 
-## 本地开发
+## Local Development
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-访问 `http://localhost:5173`。
+Open `http://localhost:5173`.
 
-## 构建
+## Build
 
 ```bash
-pnpm build      # 输出到 dist/
-pnpm preview    # 本地预览构建产物
+pnpm build      # output: dist/
+pnpm preview    # preview the production build locally
 ```
 
-## 部署到 Cloudflare Pages
+## Deploying to Cloudflare Pages
 
-1. 在 Cloudflare Dashboard 中创建 Pages 项目，连接本 GitHub 仓库
-2. 构建配置：
+1. Create a Pages project in the Cloudflare Dashboard and connect this GitHub repository.
+2. Use the following build settings:
    - **Framework preset**: `Vite`
    - **Build command**: `pnpm build`
    - **Build output directory**: `dist`
    - **Root directory**: `/`
-3. 点击「Save and Deploy」
+3. Click **Save and Deploy**.
 
-SPA 路由回退通过 `public/_redirects`（`/* /index.html 200`）实现，确保直接访问 `/docs` 等路径也能正确加载。
+SPA fallback is handled by `public/_redirects` (`/* /index.html 200`), so direct visits to routes such as `/docs` work correctly.
 
-### 关于 pnpm 的兼容性（重要）
+### pnpm Compatibility (Important)
 
-Cloudflare Pages 的构建镜像使用 **pnpm 9.x**。它只要发现仓库根目录存在 `pnpm-workspace.yaml`，
-就会按 monorepo 处理，并要求该文件包含 `packages` 字段，否则直接报
-`packages field missing or empty`。本项目虽是单包，但为放行 esbuild 构建脚本保留了这个文件，
-因此 `pnpm-workspace.yaml` 中声明了 `packages: ['.']`（根包即唯一工作区包）。
+The Cloudflare Pages build image uses **pnpm 9.x**. If it finds a `pnpm-workspace.yaml` in the repository root, it treats the repository as a monorepo and requires a `packages` field; otherwise it fails with:
 
-- `pnpm-lock.yaml` 为 lockfile v9.0，与 pnpm 9 兼容，已提交到仓库
-- 仓库中**没有** `package-lock.json`，避免双锁文件冲突
-- 本地使用 pnpm 11 开发无影响；已用 pnpm 9.15.9 实际验证 install 与 build 均通过
+```text
+packages field missing or empty
+```
 
-> 不要为了让 monorepo 校验通过而往 `package.json` 加 `packages` 字段——pnpm 不读取该字段，
-> 报错来自 `pnpm-workspace.yaml`。
+Although this project is a single package, the file is kept to allow the esbuild install script. Therefore `pnpm-workspace.yaml` declares `packages: ['.']` (the root package is the only workspace package).
 
-> 如果使用 Wrangler CLI 部署，仓库中的 `wrangler.toml` 已配置好 `pages_build_output_dir`。
+- `pnpm-lock.yaml` is lockfile v9.0, compatible with pnpm 9, and committed to the repository.
+- There is **no** `package-lock.json`, to avoid conflicting lockfiles.
+- Local development with pnpm 11 is fine; install and build have been verified with pnpm 9.15.9.
 
-## 部署到 GitHub Pages
+> Do not add a `packages` field to `package.json` to satisfy the monorepo check — pnpm does not read it. The error comes from `pnpm-workspace.yaml`.
 
-仓库已提供 `.github/workflows/jekyll-gh-pages.yml`。默认构建为项目站点，访问路径为 `https://<用户名>.github.io/<仓库名>/`。
+> If deploying with the Wrangler CLI, `wrangler.toml` already configures `pages_build_output_dir`.
 
-1. 进入仓库 Settings → Pages，将 **Build and deployment → Source** 设为 `GitHub Actions`。
-2. 推送到 `main` 或 `master`，或在 Actions 页面手动运行 `Deploy to GitHub Pages`。
-3. workflow 会自动：
-   - 使用 pnpm 9 + Node.js 24 构建；
-   - 根据仓库名设置 Vite `base`；
-   - 复制 `dist/index.html` 为 `dist/404.html` 以支持 SPA 路由回退；
-   - 创建 `.nojekyll`，避免 GitHub Pages 的 Jekyll 处理；
-   - 通过官方 Pages Actions 发布。
+## Deploying to GitHub Pages
 
-如果使用自定义域名并希望站点根目录为 `/`，在仓库 Variables 中设置：
+The repository includes `.github/workflows/jekyll-gh-pages.yml`. By default it deploys as a project site at `https://<username>.github.io/<repository>/`.
+
+1. Go to repository **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**.
+2. Push to `main` or `master`, or manually run **Deploy to GitHub Pages** from the Actions tab.
+3. The workflow will automatically:
+   - build with pnpm 9 and Node.js 24;
+   - set the Vite `base` path from the repository name;
+   - copy `dist/index.html` to `dist/404.html` for SPA route fallback;
+   - create `.nojekyll` to prevent Jekyll processing;
+   - publish through the official GitHub Pages Actions.
+
+If you use a custom domain and want the site to be served from `/`, set a repository variable:
 
 ```text
 VITE_BASE_PATH=/
 ```
 
-重新运行 workflow 即可。
+Then rerun the workflow.
 
-## 技术栈
+## Tech Stack
 
 - Vite 6
 - React 19
@@ -96,6 +101,6 @@ VITE_BASE_PATH=/
 - TypeScript 5
 - lucide-react
 
-## 开源协议
+## License
 
 [MIT License](./LICENSE)
