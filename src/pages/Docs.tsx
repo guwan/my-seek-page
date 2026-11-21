@@ -14,6 +14,14 @@ const envVars = [
   { name: 'REDIS_HOST / REDIS_PORT', desc: 'docs.env2.desc', def: 'docs.env2.def' },
   { name: 'OLLAMA_BASE_URL', desc: 'docs.env3.desc', def: 'docs.env3.def' },
   { name: 'DOUBAO_API_KEY / QWEN_API_KEY', desc: 'docs.env4.desc', def: 'docs.env4.def' },
+  { name: 'OLLAMA_CHAT_MODEL', desc: 'docs.env5.desc', def: 'docs.env5.def' },
+  { name: 'CHAT_STREAM_STALL_TIMEOUT', desc: 'docs.env6.desc', def: 'docs.env6.def' },
+] as const
+
+const v2Highlights = [
+  { t: 'docs.v20.t', d: 'docs.v20.d' },
+  { t: 'docs.v21.t', d: 'docs.v21.d' },
+  { t: 'docs.v22.t', d: 'docs.v22.d' },
 ] as const
 
 export default function Docs() {
@@ -32,6 +40,18 @@ export default function Docs() {
         <h1 className="text-4xl md:text-5xl font-extrabold">{t('docs.title')}</h1>
         <p className="text-slate-400 mt-5 text-lg">{t('docs.desc')}</p>
       </div>
+      <section className="mb-14">
+        <h2 className="text-2xl font-bold mb-3">{t('docs.v2Title')}</h2>
+        <p className="text-slate-400 mb-6">{t('docs.v2desc')}</p>
+        <div className="grid sm:grid-cols-3 gap-4">
+          {v2Highlights.map(item => (
+            <div key={item.t} className="p-5 rounded-xl border border-white/10 bg-white/[0.03]">
+              <div className="font-semibold mb-2">{t(item.t)}</div>
+              <div className="text-sm text-slate-400 leading-relaxed">{t(item.d)}</div>
+            </div>
+          ))}
+        </div>
+      </section>
       <section className="mb-14">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3"><Terminal size={22} className="text-indigo-400" /> {t('docs.stepsTitle')}</h2>
         <div className="space-y-3">
